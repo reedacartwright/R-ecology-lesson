@@ -33,7 +33,7 @@ for instructions on installing R, RStudio, and the required R packages.
 * [Starting with data](https://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html)
 * [Manipulating, analyzing and exporting data with `tidyverse`](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
 * [Data visualization with `ggplot2`](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)
-* [SQL databases and R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
+* [SQL databases and R](https://datacarpentry.org/R-ecology-lesson/06-r-and-databases.html)
 
 
 ## Code handout
