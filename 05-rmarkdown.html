@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Getting started with R Markdown (Optional)</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon/favicon.ico">
+<link rel="icon" sizes="16x16 32x32 64x64" href="favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon-192.png">
+<link rel="icon" type="image/png" sizes="160x160" href="favicon/favicon-160.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+<link rel="apple-touch-icon" href="favicon/favicon-57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicon/favicon-114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicon/favicon-72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicon/favicon-144.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicon/favicon-60.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon/favicon-120.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicon/favicon-76.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon/favicon-152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180.png">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="favicon/favicon-144.png">
+<meta name="msapplication-config" content="favicon/browserconfig.xml">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+  $( function() {
+  $( ".accordion" ).accordion({
+      heightStyle: "content",
+      active: false,
+      collapsible: true
+    });
+  } );
+</script>
+
+<script>
+  <!-- search menu pop-up --->
+  $(function() {
+    function slideToggle() {
+      $("#search-box").toggle("slide", 500);
+  };
+  $("#search-icon").on("click", function() {
+  slideToggle();
+  });
+  });
+</script>
+
+
+
+<!-- Motomo analytics -->
+
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
+<!-- add  Algolia DocSearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="00-before-we-start.html">Before we start</a>
+        </li>
+        <li>
+          <a href="01-intro-to-r.html">Intro to R</a>
+        </li>
+        <li>
+          <a href="02-starting-with-data.html">Starting with data</a>
+        </li>
+        <li>
+          <a href="03-dplyr.html">Manipulating data</a>
+        </li>
+        <li>
+          <a href="04-visualization-ggplot2.html">Visualizing data</a>
+        </li>
+        <li>
+          <a href="05-rmarkdown.html">R Markdown</a>
+        </li>
+        <li>
+          <a href="06-r-and-databases.html">R and SQL</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Extras<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="code-handout.R">Download Code Handout</a></li>
+            <li><a href="instructor-notes.html">Instructor Notes</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="btn-group" style="margin-right: 10px;">
+            <a type="button" class="btn btn-sm btn-success navbar-btn" href="https://give.communityin.org/TheCarpentries" onclick="_paq.push(['trackEvent', 'donate', 'click', 'top-button']);">Donate</a>
+            <a type="button" class="btn btn-sm btn-success navbar-btn"  data-toggle="tooltip" data-placement="bottom" title="If this lesson is useful to you, consider making a contribution to The Carpentries by clicking on the 'Donate' button. Thank you for your support!">
+              <span class="glyphicon glyphicon-question-sign"></span>
+              <span class="sr-only">Toggle Tooltip</span>
+            </a>
+          </div>
+        </li>
+	<li class="search">
+	  <input id="search-box" type="text"  placeholder="Search...">
+	  <input type="submit">
+	</li>
+	<li class="search">
+	  <span id ="search-icon"><i class="fa fa-search fa-lg"></i></span>
+	</li>
+        <li>
+	  <a href="https://github.com/datacarpentry/R-ecology-lesson">
+	    <span class="fa fa-github fa-lg"></span>
+	  </a>
+	</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Getting started with R Markdown (Optional)</h1>
+
+</div>
+
+
+<hr />
+<blockquote>
+<h3 id="learning-objectives">Learning Objectives</h3>
+<ul>
+<li>Create a .Rmd document containing R code, text, and plots</li>
+<li>Create a YAML header to control output</li>
+<li>Understand basic syntax of (R)Markdown</li>
+<li>Customise code chunks to control formatting</li>
+<li>Use code chunks and in-line code to create dynamic, reproducible documents</li>
+</ul>
+</blockquote>
+<hr />
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>R Markdown is a flexible type of document that allows you to seamlessly combine executable R code, and its output, with text in a single document. These documents can be readily converted to multiple static and dynamic output formats, including PDF (.pdf), Word (.docx), and HTML (.html).</p>
+<p>The benefit of a well-prepared R Markdown document is full reproducibility. This also means that, if you notice a data transcription error, or you are able to add more data to your analysis, you will be able to recompile the report without making any changes in the actual document.</p>
+<p>The <strong>rmarkdown</strong> package comes pre-installed with RStudio, so no action is necessary.</p>
+<figure>
+<img src="img/rmarkdown_wizards.png" alt="R Markdown wizard monsters creating a R Markdown document from a recipe. Art by Allison Horst" width="100%" />
+<figcaption>
+Image credit: <a href="https://github.com/allisonhorst/stats-illustrations">Allison Horst</a>
+</figcaption>
+</figure>
+<div id="creating-an-r-markdown-file" class="section level3">
+<h3>Creating an R Markdown file</h3>
+<p>To create a new R Markdown document in RStudio, click File -&gt; New File -&gt; R Markdown:</p>
+<div class="figure">
+<img src="img/new-rmd.png" alt="Screenshot of the New R Markdown file dialogue box in RStudio" />
+<p class="caption">Screenshot of the New R Markdown file dialogue box in RStudio</p>
+</div>
+<p>Then click on ‘Create Empty Document’. Normally you could enter the title of your document, your name (Author), and select the type of output, but we will be learning how to start from a blank document.</p>
+</div>
+<div id="basic-components-of-r-markdown" class="section level3">
+<h3>Basic components of R Markdown</h3>
+<p>To control the output, a YAML (YAML Ain’t Markup Language) header is needed:</p>
+<pre><code>---
+title: &quot;My Awesome Report&quot;
+author: &quot;Emmet Brickowski&quot;
+date: &quot;&quot;
+output: html_document
+---</code></pre>
+<p>The header is defined by the three hyphens at the beginning (<code>---</code>) and the three hyphens at the end (<code>---</code>).</p>
+<p>In the YAML, the only required field is the <code>output:</code>, which specifies the type of output you want. This can be an <code>html_document</code>, a <code>pdf_document</code>, or a <code>word_document</code>. We will start with an HTML doument and discuss the other options later.</p>
+<p>The rest of the fields can be deleted, if you don’t need them. After the header, to begin the body of the document, you start typing after the end of the YAML header (i.e. after the second <code>---</code>).</p>
+</div>
+<div id="markdown-syntax" class="section level3">
+<h3>Markdown syntax</h3>
+<p>Markdown is a popular markup language that allows you to add formatting elements to text, such as <strong>bold</strong>, <em>italics</em>, and <code>code</code>. The formatting will not be immediately visible in a markdown (.md) document, like you would see in a Word document. Rather, you add Markdown syntax to the text, which can then be converted to various other files that can translate the Markdown syntax. Markdown is useful because it is lightweight, flexible, and platform independent.</p>
+<p>Some platforms provide a real time preview of the formatting, like RStudio’s visual markdown editor (available from version 1.4).</p>
+<p>First, let’s create a heading! A <code>#</code> in front of text indicates to Markdown that this text is a heading. Adding more <code>#</code>s make the heading smaller, i.e. one <code>#</code> is a first level heading, two <code>##</code>s is a second level heading, etc. upto the 6th level heading.</p>
+<pre><code># Title
+## Section
+### Sub-section
+#### Sub-sub section
+##### Sub-sub-sub section
+###### Sub-sub-sub-sub section</code></pre>
+<p>(only use a level if the one above is also in use)</p>
+<p>Since we have already defined our title in the YAML header, we will use a section heading to create an Introduction section.</p>
+<pre><code>## Introduction</code></pre>
+<p>You can make things <strong>bold</strong> by surrounding the word with double asterisks, <code>**bold**</code>, or double underscores, <code>__bold__</code>; and <em>italicize</em> using single asterisks, <code>*italics*</code>, or single underscores, <code>_italics_</code>.</p>
+<p>You can also combine <strong>bold</strong> and <em>italics</em> to write something <strong><em>really</em></strong> important with triple-asterisks, <code>***really***</code>, or underscores, <code>___really___</code>; and, if you’re feeling bold (pun intended), you can also use a combination of asterisks and underscores, <code>**_really_**</code>, <code>**_really_**</code>.</p>
+<p>To create <code>code-type</code> font, surround the word with backticks, `code-type`.</p>
+<p>Now that we’ve learned a couple of things, it might be useful to implement them:</p>
+<pre><code>## Introduction
+
+This report uses the **tidyverse** package along with the *Portal Project Teaching Database*, 
+which has columns that include:</code></pre>
+<p>Then we can create a list for the variables using <code>-</code>, <code>+</code>, or <code>*</code> keys.</p>
+<pre><code>## Introduction
+
+This report uses the **tidyverse** package along with the *SAFI* dataset, 
+which has columns that include:
+
+- record_id
+- year
+- plot_id
+- species_id
+- sex
+- hindfoot_length
+- weight
+- genus
+- plot_type</code></pre>
+<p>You can also create an ordered list using numbers:</p>
+<pre><code>1. record_id
+2. year
+3. plot_id
+4. species_id
+5. sex
+6. hindfoot_length
+7. weight
+8. genus
+9. plot_type</code></pre>
+<p>And nested items by tab-indenting:</p>
+<pre><code>- record_id
+  + Unique identifier of this observation
+- year
+  + Date of observation
+- plot_id
+  + Plot where observation was made
+- sex
+  + The sex of the observed animal</code></pre>
+<p>For more Markdown syntax see <a href="https://www.markdownguide.org/basic-syntax">the following reference guide</a>.</p>
+<p>Now we can render the document into HTML by clicking the <strong>Knit</strong> button in the top of the Source pane (top left), or use the keyboard shortcut <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Windows and Linux, and <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Mac. If you haven’t saved the document yet, you will be prompted to do so when you <strong>Knit</strong> for the first time.</p>
+<div class="figure">
+<img src="img/rmd-rmd_to_html.png" alt="The ‘knitting’ process: First, R Markdown is converted to Markdown, which is then converted (via pandoc) to .html, .pdf, .docx, etc." />
+<p class="caption">The ‘knitting’ process: First, R Markdown is converted to Markdown, which is then converted (via pandoc) to .html, .pdf, .docx, etc.</p>
+</div>
+</div>
+</div>
+<div id="writing-an-r-markdown-report" class="section level2">
+<h2>Writing an R Markdown report</h2>
+<p>Now we will add some R code from our previous data wrangling and visualisation, which means we need to make sure <strong>tidyverse</strong> is loaded. It is not enough to load <strong>tidyverse</strong> from the console, we will need to load it within our R Markdown document. The same applies to our data. To load these, we will need to create a ‘code chunk’ at the top of our document (below the YAML header).</p>
+<p>A code chunk can be inserted by clicking Code &gt; Insert Chunk, or by using the keyboard shortcuts <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, and <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.</p>
+<p>The syntax of a code chunk is:</p>
+<pre>
+&#96;&#96;&#96;{r chunk-name}
+Here is where you place the R code that you want to run.
+&#96;&#96;&#96;
+</pre>
+<p>An R Markdown document knows that this text is not part of the report from the <code>```</code> that begins and ends the chunk. It also knows that the code inside of the chunk is R code from the <code>r</code> inside of the curly braces (<code>{}</code>). After the <code>r</code> you can add a name for the code chunk . Naming a chunk is optional, but recommended. Each chunk name must be unique, and only contain alphanumeric characters and <code>-</code>.</p>
+<p>To load <strong>tidyverse</strong> and our <code>surveys_complete.csv</code> file, we will insert a chunk and call it ‘setup’. Since we don’t want this code or the output to show in our knitted HTML document, we add an <code>include = FALSE</code> option after the code chunk name (<code>{r setup, include = FALSE}</code>).</p>
+<pre>
+&#96;&#96;&#96;{r setup, include = FALSE}
+library(tidyverse)
+library(here)
+surveys_complete <- read_csv(here("data/surveys_complete.csv"))
+&#96;&#96;&#96;
+</pre>
+<p>If you were unable to complete the previous lesson or did not save the data, then you can create it in a new code chunk instead.</p>
+<pre>
+&#96;&#96;&#96;{r surveys-data, include = FALSE}
+surveys_complete <- read_csv(here("data_raw/portal_data_joined.csv")) |>
+  drop_na(weight, hindfoot_length, sex) |>
+  group_by(species_id) |>
+  filter(n() >= 50) |>
+  ungroup()
+&#96;&#96;&#96;
+</pre>
+<blockquote>
+<h3 id="important-note">Important Note!</h3>
+<p>The file paths you give in a .Rmd document, e.g. to load a .csv file, are relative to the .Rmd document, <strong>not</strong> the project root.</p>
+<p>We highly recommend the use of the <code>here()</code> function to keep the file paths consistent within your project.</p>
+</blockquote>
+</div>
+<div id="insert-table" class="section level2">
+<h2>Insert table</h2>
+<p>Next, we will re-create a table from the Manipulating Data episode which shows average animal weight grouped by <code>species_id</code> and <code>sex</code>. We can do this by creating a new code chunk and calling it ‘weight-tbl’. Or, you can come up with something more creative (just remember to stick to the naming rules).</p>
+<p>It isn’t necessary to <strong>Knit</strong> your document every time you want to see the output. Instead you can run the code chunk with the green triangle in the top right corner of the the chunk, or with the keyboard shortcuts: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> on Windows and Linux, or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> on Mac.</p>
+<p>To make sure the table is formatted nicely in our output document, we will need to use the <code>kable()</code> function from the <strong>knitr</strong> package. The <code>kable()</code> function takes the output of your R code and knits it into a nice looking HTML table. You can also specify different aspects of the table, e.g. the column names, a caption, etc.</p>
+<p>Run the code chunk to make sure you get the desired output.</p>
+<pre>
+&#96;&#96;&#96;{r weight-tbl, message=FALSE}
+surveys_complete |>
+  group_by(species_id, sex) |>
+  summarize(mean_weight = mean(weight, na.rm = TRUE)) |>
+  head(n=10) |>
+  knitr::kable(caption = "We can also add a caption.",
+               col.names = c("Species", "Sex", "Mean Weight"))
+&#96;&#96;&#96;
+</pre>
+<table>
+<caption>We can also add a caption.</caption>
+<thead>
+<tr class="header">
+<th align="left">Species</th>
+<th align="left">Sex</th>
+<th align="right">Mean Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">DM</td>
+<td align="left">F</td>
+<td align="right">41.57354</td>
+</tr>
+<tr class="even">
+<td align="left">DM</td>
+<td align="left">M</td>
+<td align="right">44.32434</td>
+</tr>
+<tr class="odd">
+<td align="left">DO</td>
+<td align="left">F</td>
+<td align="right">48.54098</td>
+</tr>
+<tr class="even">
+<td align="left">DO</td>
+<td align="left">M</td>
+<td align="right">49.12102</td>
+</tr>
+<tr class="odd">
+<td align="left">DS</td>
+<td align="left">F</td>
+<td align="right">117.39224</td>
+</tr>
+<tr class="even">
+<td align="left">DS</td>
+<td align="left">M</td>
+<td align="right">122.88410</td>
+</tr>
+<tr class="odd">
+<td align="left">NL</td>
+<td align="left">F</td>
+<td align="right">154.36964</td>
+</tr>
+<tr class="even">
+<td align="left">NL</td>
+<td align="left">M</td>
+<td align="right">164.87927</td>
+</tr>
+<tr class="odd">
+<td align="left">OL</td>
+<td align="left">F</td>
+<td align="right">30.78440</td>
+</tr>
+<tr class="even">
+<td align="left">OL</td>
+<td align="left">M</td>
+<td align="right">31.83369</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="customizing-chunk-output" class="section level2">
+<h2>Customizing chunk output</h2>
+<p>We mentioned using <code>include = FALSE</code> in a code chunk to prevent the code and output from printing in the knitted document. There are additional options available to customize how the code-chunks are presented in the output document. The options are entered in the code chunk after <code>chunk-name</code>and separated by commas, e.g. <code>{r chunk-name, eval = FALSE, echo = TRUE}</code>.</p>
+<table>
+<colgroup>
+<col width="32%" />
+<col width="36%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Options</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>eval</code></td>
+<td><code>TRUE</code> or <code>FALSE</code></td>
+<td>Whether or not the code within the code chunk should be run.</td>
+</tr>
+<tr class="even">
+<td><code>echo</code></td>
+<td><code>TRUE</code> or <code>FALSE</code></td>
+<td>Choose if you want to show your code chunk in the output document. <code>echo = TRUE</code> will show the code chunk.</td>
+</tr>
+<tr class="odd">
+<td><code>include</code></td>
+<td><code>TRUE</code> or <code>FALSE</code></td>
+<td>Choose if the output of a code chunk should be included in the document. <code>FALSE</code> means that your code will run, but will not show up in the document.</td>
+</tr>
+<tr class="even">
+<td><code>warning</code></td>
+<td><code>TRUE</code> or <code>FALSE</code></td>
+<td>Whether or not you want your output document to display potential warning messages produced by your code.</td>
+</tr>
+<tr class="odd">
+<td><code>message</code></td>
+<td><code>TRUE</code> or <code>FALSE</code></td>
+<td>Whether or not you want your output document to display potential messages produced by your code.</td>
+</tr>
+<tr class="even">
+<td><code>fig.align</code></td>
+<td><code>default</code>, <code>left</code>, <code>right</code>, <code>center</code></td>
+<td>Where the figure from your R code chunk should be output on the page</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h3 id="tip">Tip</h3>
+<ul>
+<li>The default settings for the above chunk options are all <code>TRUE</code>.</li>
+<li>The default settings can be modified per chunk, or with <code>knitr::opts_chunk$set()</code>,</li>
+<li>Entering <code>knitr::opts_chunk$set(echo = FALSE)</code> will change the default of value of <code>echo</code> to <code>FALSE</code> for <strong>every</strong> code chunk in the document.</li>
+</ul>
+</blockquote>
+<blockquote>
+<h3 id="challenge" class="challenge">Challenge</h3>
+<p>Play around with the different options in the chunk with the code for the table, and re-<strong>Knit</strong> to see what each option does to the output.</p>
+What happens if you use <code>eval = FALSE</code> and <code>echo = FALSE</code>? What is the difference between this and <code>include = FALSE</code>?
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<p>
+Create a chunk with <code>{r eval = FALSE, echo = FALSE}</code>, then create another chunk with <code>{r include = FALSE}</code> to compare. <code>eval = FALSE</code> and <code>echo = FALSE</code> will neither run the code in the chunk, nor show the code in the knitted document. The code chunk essentially doesn’t exist in the knitted document as it was never run. Whereas <code>include = FALSE</code> will run the code and store the output for later use.
+</div>
+</div>
+</p>
+</blockquote>
+</div>
+<div id="in-line-r-code" class="section level2">
+<h2>In-line R code</h2>
+<p>Now we will use some in-line R code to present some descriptive statistics. To use in-line R-code, we use the same backticks that we used in the Markdown section, with an <code>r</code> to specify that we are generating R-code. The difference between in-line code and a code chunk is the number of backticks. In-line R code uses one backtick (<code>`r`</code>), whereas code chunks use three backticks (``` r ```).</p>
+<p>For example, today’s date is `r Sys.Date()`, will be rendered as: today’s date is 2022-09-29.<br />
+The code will display today’s date in the output document (well, technically the date the document was last knitted).</p>
+<p>The best way to use in-line R code, is to minimise the amount of code you need to produce the in-line output by preparing the output in code chunks. Let’s say we’re interested in presenting the average hindfoot length of a genus.</p>
+<pre>
+&#96;&#96;&#96;{r in-line-code}
+# create a summary data frame with the mean hindfoot length by genus
+mean_hindfoot <- surveys_complete |>
+  group_by(genus) |>
+  summarize(mean_hindfoot_length = mean(hindfoot_length))
+
+# and select the genus we want to use
+mean_neotoma <- mean_hindfoot %>%
+  filter(genus == "Neotoma")
+&#96;&#96;&#96;
+</pre>
+<p>Now we can make an informative statement on the means of each village, and include the mean values as in-line R-code. For example:</p>
+<p>The average hindfoot length in the genus <em>Neotoma</em> is `r round(mean_neotoma$mean_hindfoot_length, 2)`</p>
+<p>becomes …</p>
+<p>The average hindfoot length in the genus <em>Neotoma</em> is 32.25.</p>
+<p>Because we are using in-line R code instead of the actual values, we have created a dynamic document that will automatically update if we make changes to the dataset and/or code chunks.</p>
+</div>
+<div id="plots" class="section level2">
+<h2>Plots</h2>
+<p>Finally, we will also include a plot, so our document is a little more colorful and a little less boring.</p>
+<pre>
+&#96;&#96;&#96;{r surveys-plot}
+yearly_counts <- surveys_complete |>
+  count(year, genus)
+ggplot(data = yearly_counts, aes(x = year, y = n, color = genus)) +
+    geom_line()
+&#96;&#96;&#96;
+</pre>
+<p><img src="img/R-ecology-surveys-plot-1.png" width="672" /></p>
+<blockquote>
+<h3 id="challenge-1" class="challenge">Challenge</h3>
+<p>Add a second plot to your document that shows the yearly counts of animals per genera separated by sex and using a facet to create sub plots per genus.</p>
+<blockquote>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<p>
+<pre>
+&#96;&#96;&#96;{r my-fancy-plot}
+ yearly_sex_counts <- surveys_complete |>
+   count(year, genus, sex)
+ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
+   geom_line() +
+   facet_wrap(facets =  vars(genus))
+&#96;&#96;&#96;
+</pre>
+</div>
+</div>
+</p>
+</blockquote>
+</blockquote>
+<p>We can also create a caption with the chunk option <code>fig.cap</code>.</p>
+<pre>
+&#96;&#96;&#96;{r chunk-name, fig.cap = "I made this plot while attending an
+awesome Data Carpentries workshop where I learned a ton of cool stuff!"}
+# Code for plot
+&#96;&#96;&#96;
+</pre>
+<p>or, ideally, something more informative.</p>
+<div class="figure">
+<img src="img/R-ecology-surveys-plot2-1.png" alt="I made this plot while attending an awesome Data Carpentries workshop where I learned a ton of cool stuff!" width="672" />
+<p class="caption">
+I made this plot while attending an awesome Data Carpentries workshop where I learned a ton of cool stuff!
+</p>
+</div>
+</div>
+<div id="other-output-options" class="section level2">
+<h2>Other output options</h2>
+<p>You can convert R Markdown to a PDF or a Word document (among others). Click the little triangle next to the <strong>Knit</strong> button to get a drop-down menu. Or you could put <code>pdf_document</code> or <code>word_document</code> in the initial header of the file.</p>
+<pre><code>---
+title: &quot;My Awesome Report&quot;
+author: &quot;Emmet Brickowski&quot;
+date: &quot;&quot;
+output: word_document
+---</code></pre>
+<blockquote>
+<h3 id="note-creating-pdf-documents" class="callout">Note: Creating PDF documents</h3>
+<p>Creating .pdf documents may require installation of some extra software. The R package <code>tinytex</code> provides some tools to help make this process easier for R users. With <code>tinytex</code> installed, run <code>tinytex::install_tinytex()</code> to install the required software (you’ll only need to do this once) and then when you <strong>Knit</strong> to pdf <code>tinytex</code> will automatically detect and install any additional LaTeX packages that are needed to produce the pdf document. Visit the <a href="https://yihui.org/tinytex/">tinytex website</a> for more information.</p>
+</blockquote>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<ul>
+<li><a href="http://kbroman.org/knitr_knutshell">Knitr in a knutshell tutorial</a></li>
+<li><a href="http://www.amazon.com/exec/obidos/ASIN/1482203537/7210-20">Dynamic Documents with R and knitr</a> (book)</li>
+<li><a href="http://rmarkdown.rstudio.com">R Markdown documentation</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf">R Markdown cheat sheet</a></li>
+<li><a href="https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/">Getting started with R Markdown</a></li>
+<li><a href="https://commonmark.org/help/tutorial/">Markdown tutorial</a></li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a> (book by Rstudio team)</li>
+<li><a href="https://www.rstudio.com/resources/webinars/reproducible-reporting/">Reproducible Reporting</a></li>
+<li><a href="https://www.rstudio.com/resources/webinars/the-ecosystem-of-r-markdown/">The Ecosystem of R Markdown</a></li>
+<li><a href="https://www.rstudio.com/resources/webinars/introducing-bookdown/">Introducing Bookdown</a></li>
+</ul>
+</div>
+
+<hr/>
+<div class="row">
+  <div class="col-md-7 text-left">
+    <p class="text-muted">
+      <a href="https://datacarpentry.org/">Data Carpentry</a>,  2014-2021.
+    </p>
+    <p class="text-muted">
+      <a href="LICENSE.html">License</a>.
+      <a href="CONTRIBUTING.html">Contributing</a>.
+    </p>
+    <p class="text-muted">
+      Questions?  Feedback?
+      Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file
+        an issue on GitHub</a>. <br/>
+      On Twitter: <a href="https://twitter.com/datacarpentry">@datacarpentry</a>
+    </p>
+  </div>
+  <div class="col-md-5 text-right">
+    <p class="text-muted">
+      If this lesson is useful to you, consider <a href="https://carpentries.org/newsletter/"><bold>subscribing to our newsletter</bold></a> or
+      <a href="https://give.communityin.org/TheCarpentries"  onclick="_paq.push(['trackEvent', 'donate', 'click', 'bottom-button']);">making a donation</a> to support the work of
+      <span class="text-nowrap"><a href="https://carpentries.org">The
+      Carpentries</a></span>.
+    </p>
+  </div>
+</div>
+
+
+<!--  Algolia DocSearch -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+ apiKey: '4c64cef535ab2b7c8d1b73ed13f283e1',
+ indexName: 'datacarpentry',
+ inputSelector: '#search-box',
+ debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
